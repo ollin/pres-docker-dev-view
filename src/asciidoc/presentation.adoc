@@ -7,28 +7,29 @@
 == ...aus Sicht eines Softwareentwicklers
 
 image::ollin.2013.100x100p.png["Oliver Nautsch",float="right", link="http://www.nautsch.com/"]
-Oliver Nautsch
+_Oliver Nautsch_
 
 * 31.12.2014 Inventage AG
 * 01.01.2015 nautsch.com
 
-_Software Craftsman_ (Engineer, Coach, Architect, Trainer, Team Lead, Consultant, Gardener, ...)
+_Software Craftsman_ 
 
+ * Engineer, Coach, Architect, Trainer, Team Lead, Consultant, Gardener, ...
  * Microservices, Open Source, TDD, DDD, CD, Virtualisierung, ...
 
 
 '''
 
-email:      oliver.nautsch@gmail.com
-twitter:    https://twitter.com/ollispieps[@ollispieps] 
-github:     https://github.com/ollin[@ollin] 
-google+:     https://plus.google.com/+OliverNautsch/[OliverNautsch] 
+email:      oliver.nautsch@gmail.com +
+twitter:    https://twitter.com/ollispieps[@ollispieps] +
+github:     https://github.com/ollin[@ollin] +
+google+:     https://plus.google.com/+OliverNautsch/[OliverNautsch] +
 
 
 '''
 
-Jugs Board Member seit 2014
-http://www.ossanschulen.ch/[OSS an Schulen]
+Jugs Board Member seit 2014 +
+http://www.ossanschulen.ch/[OSS an Schulen] +
 #. . . running . . .#
 
 == Docker ist: 
