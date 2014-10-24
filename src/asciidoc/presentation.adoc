@@ -10,7 +10,7 @@ image::ollin.2013.100x100p.png["Oliver Nautsch",float="right", link="http://www.
 Oliver Nautsch
 
 * 31.12.2014 Inventage AG
-* 01.01.2014 nautsch.com
+* 01.01.20155555 nautsch.com
 
 _Software Craftsman_ (Engineer, Coach, Architect, Trainer, Team Lead, Consultant, Gardener, ...)
 
