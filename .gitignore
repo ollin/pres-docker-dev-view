@@ -1,0 +1,8 @@
+.gradle
+.idea
+.jruby
+*.iml
+docs/*.html
+docs/css
+.sass-cache
+atlassian-ide-plugin.xml

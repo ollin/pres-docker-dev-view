@@ -1,0 +1,53 @@
+buildscript {
+	repositories {
+		jcenter()
+		mavenCentral()
+		maven { url 'http://dl.bintray.com/robfletcher/gradle-plugins' }
+	}
+
+	dependencies {
+		classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.0'
+		classpath 'org.gradle.plugins:gradle-compass:1.0.7'
+	}
+}
+
+apply plugin: 'org.asciidoctor.gradle.asciidoctor'
+apply plugin: 'compass'
+
+compass {
+    cssDir = file('docs/css')
+    sassDir = file('src/sass')
+}
+
+asciidoctor.dependsOn compileSass
+
+asciidoctor {
+	sourceDir = new File('src/asciidoc')
+	outputDir = new File('docs')
+	backends = ['deckjs']       // 'deckjs', 'html5'
+
+	options = [
+			template_dirs: ["${projectDir}/asciidoctor-backends/haml".toString()],
+			attributes: [
+					'imagesdir': 'images',
+					'source-highlighter': 'coderay',
+					'deckjs_theme': 'swiss', // 'web-2.0' , 'swiss', 'neon'
+					'deckjs_transition': 'horizontal-slide', // 'fade', 'horizontal-slide' , 'vertical-slide'
+					'navigation':'',
+					'goto':'',
+					'menu':'',
+					'status':'',
+					'split':'',
+					'blank':'',
+					'icons':'font',
+			//		'customcss': 'css/custom.css',
+					'viewport': 'width=1000, user-scalable=yes',
+					'sectids!': '',
+					'showtitle':''
+			]
+	]
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
