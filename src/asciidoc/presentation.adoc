@@ -9,8 +9,8 @@
 image::ollin.2013.100x100p.png["Oliver Nautsch",float="right", link="http://www.nautsch.com/"]
 Oliver Nautsch
 
-<= 31.12.2014 Inventage AG
->= 01.01.2014 nautsch.com
+* 31.12.2014 Inventage AG
+* 01.01.2014 nautsch.com
 
 _Software Craftsman_ (Engineer, Coach, Architect, Trainer, Team Lead, Consultant, Gardener, ...)
 
@@ -32,18 +32,5 @@ http://www.ossanschulen.ch/[OSS an Schulen]
 #. . . running . . .#
 
 == Docker ist: 
-
-/**
-
-http://www.lifeintech.com/blog/2014/7/19/containerisation-is-the-new-virtualisation
-
-* Open Source - Although Docker was created by a commercial company (dotCloud), it's open-source and has a thriving community.
-* Lightweight - Containers are insanely fast, providing bare-metal access to the hardware. No need to worry about a hypervisor layer.
-* Self-sufficient - Each container comprises of just the application and its dependencies. It runs as an isolated process in userspace on the host operating system, sharing the kernel with other containers.
-* Application - Containers package applications, not machines (making it application centric). Unlike traditional virtual machines a Docker container does not include a separate operating system.
-* Run Anywhere - Run on any machine, with guaranteed consistency, for example: local (OS X, Linux, Windows), Data Centre (Red Hat, etc.) and Cloud Infrastructure (AWS EC2, Rackspace, etc.)
-
-**/
-
 
 
