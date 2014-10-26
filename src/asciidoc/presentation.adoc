@@ -6,11 +6,11 @@
 
 == ...aus Sicht eines Softwareentwicklers
 
-image::ollin.2013.100x100p.png["Oliver Nautsch",float="right", link="http://www.nautsch.com/"]
+image::ollin.2013.340x268p.png["Oliver Nautsch",float="right", link="http://www.nautsch.com/"]
 _Oliver Nautsch_
 
-* 31.12.2014 Inventage AG
-* 01.01.2015 nautsch.com
+* Inventage AG
+* ab 2015 selbsständig
 
 _Software Craftsman_ 
 
@@ -32,6 +32,17 @@ Jugs Board Member seit 2014 +
 http://www.ossanschulen.ch/[OSS an Schulen] +
 #. . . running . . .#
 
-== Docker ist: 
+== Was ist Docker
+
+image::docker.png["docker",float="right", link="http://www.docker.com/"]
+* Open Source Software
+* Applikationen in Software Containern
+* OS-Level Virtualisierung auf Linux
+
+== Unterschied zu virtuellen Maschinen
+
+image::container-vs-vm.png[caption="Quelle: https://www.docker.com/whatisdocker/", alt="Unterschied zu VM's"]
+
+* Beispiel: virtualbox via https://www.vagrantup.com/[Vagrant] vs docker
 
 
