@@ -35,6 +35,7 @@ http://www.ossanschulen.ch/[OSS an Schulen] +
 == Was ist Docker
 
 image::docker.png["docker",float="right", link="http://www.docker.com/"]
+
 * Open Source Software
 * Applikationen in Software Containern
 * OS-Level Virtualisierung auf Linux
@@ -44,5 +45,24 @@ image::docker.png["docker",float="right", link="http://www.docker.com/"]
 image::container-vs-vm.png[caption="Quelle: https://www.docker.com/whatisdocker/", alt="Unterschied zu VM's"]
 
 * Beispiel: virtualbox via https://www.vagrantup.com/[Vagrant] vs docker
+
+== Docker Elemente
+
+* https://hub.docker.com/[Docker Hub] ist eine Registry für Images
+* Docker Engine
+    ** Docker Daemon
+    ** Docker CLI
+* Image
+* Container
+
+== Docker Techniken
+
+image::docker-filesystems-multilayer.png[caption="Quelle: https://docs.docker.com/terms/layer/#layer", alt="Layers", float="right"]
+
+* cgroups - control groups - Linux Kernel Funktion zum begrenzen, messen und isolieren von
+  Ressourcen (CPU, Speicher, disc I/O etc.)
+* kernel namespaces - trennen der Sichtbarkeit von Ressourcen
+  in anderen Gruppen (Prozesse, Netzwerk, user IDs, Dateisysteme, etc.)
+* Overlay-Dateisystem (AuFS oder Btrfs)\
 
 

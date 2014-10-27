@@ -4,5 +4,7 @@
 *.iml
 docs/*.html
 docs/css
+docs/images
 .sass-cache
 atlassian-ide-plugin.xml
+
