@@ -111,7 +111,7 @@ RUN touch huschihops.txt
 ----
 [source, bash]
 ----
-sudo docker build -t ollin/huschihops:2.0 .
+sudo docker build -t ollin/huschihops:1.0 .
 Sending build context to Docker daemon  2.56 kB
 Sending build context to Docker daemon
 Step 0 : FROM ubuntu:14.04.1
@@ -130,6 +130,26 @@ Step 0 : FROM ubuntu:14.04.1
      ollin/huschihops                 1.0                   01ee073272ec        31 seconds ago      225.4 MB
      . . .
 ----
+
+== Benutzen eines Images
+
+[source, bash]
+----
+docker inspect jenkins
+. . . (Metainformationen ueber Image als JSON, u.a. ExposedPorts)
+
+docker run -d -t -p 8080:8080 --name myjenkins1 jenkins
+docker run -d -t -p 8081:8080 --name myjenkins2 jenkins
+
+docker stop myjenkins2 myjenkins1
+docker rm myjenkins2 myjenkins1
+----
+
+* Daten sind weg!
+
+
+
+
 
 == Docker - weitere Themen
 
