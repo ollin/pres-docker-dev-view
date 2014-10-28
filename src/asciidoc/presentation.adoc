@@ -50,19 +50,28 @@ image::container-vs-vm.png[caption="Quelle: https://www.docker.com/whatisdocker/
 
 * https://hub.docker.com/[Docker Hub] ist eine Registry für Images
 * Docker Engine
-    ** Docker Daemon
+    ** Docker Daemon ( https://docs.docker.com/reference/api/docker_remote_api/[REST API] )
     ** Docker CLI
 * Image
 * Container
 
 == Docker Techniken
 
-image::docker-filesystems-multilayer.png[caption="Quelle: https://docs.docker.com/terms/layer/#layer", alt="Layers", float="right"]
+image::docker-filesystems-multilayer.png[caption="Quelle: https://docs.docker.com/terms/layer/#layer", alt="Layers", float="right", width=400]
 
 * cgroups - control groups - Linux Kernel Funktion zum begrenzen, messen und isolieren von
   Ressourcen (CPU, Speicher, disc I/O etc.)
 * kernel namespaces - trennen der Sichtbarkeit von Ressourcen
   in anderen Gruppen (Prozesse, Netzwerk, user IDs, Dateisysteme, etc.)
-* Overlay-Dateisystem (AuFS oder Btrfs)\
+* Overlay-Dateisystem (AuFS oder Btrfs)
+
+== Docker - weitere Themen
+
+* https://coreos.com/[Linux for Massive Server Deployments]
+* http://www.projectatomic.io/[Deploy and Manage Your Docker Containers.]
+* https://github.com/GoogleCloudPlatform/kubernetes[Container Cluster Managmement]
+* . . .
+
+
 
 
