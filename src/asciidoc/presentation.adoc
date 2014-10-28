@@ -48,6 +48,8 @@ image::container-vs-vm.png[caption="Quelle: https://www.docker.com/whatisdocker/
 
 == Docker Elemente
 
+image::dockerstory.png["usability over functionality", float="right"]
+
 * https://hub.docker.com/[Docker Hub] ist eine Registry für Images
 * Docker Engine
     ** Docker Daemon ( https://docs.docker.com/reference/api/docker_remote_api/[REST API] )
@@ -67,9 +69,9 @@ image::docker-filesystems-multilayer.png[caption="Quelle: https://docs.docker.co
 
 == Docker - weitere Themen
 
-* https://coreos.com/[Linux for Massive Server Deployments]
-* http://www.projectatomic.io/[Deploy and Manage Your Docker Containers.]
-* https://github.com/GoogleCloudPlatform/kubernetes[Container Cluster Managmement]
+* https://coreos.com/[CoreOs - Linux for Massive Server Deployments]
+* http://www.projectatomic.io/[Project Atomic - Deploy and Manage Your Docker Containers.]
+* https://github.com/GoogleCloudPlatform/kubernetes[Kubernetes - Container Cluster Managmement]
 * . . .
 
 
