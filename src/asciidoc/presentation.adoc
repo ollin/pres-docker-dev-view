@@ -141,14 +141,38 @@ docker inspect jenkins
 docker run -d -t -p 8080:8080 --name myjenkins1 jenkins
 docker run -d -t -p 8081:8080 --name myjenkins2 jenkins
 
+docker ps
+docker stop myjenkins1
+docker ps
+docker start myjenkins1
+
 docker stop myjenkins2 myjenkins1
 docker rm myjenkins2 myjenkins1
 ----
 
-* Daten sind weg!
+* erzeugen vs. starten
+* Ports von Container an Host herausgeben
+* _docker rm_ und die Daten sind weg!
 
+== data volumes 
 
+* spezielle Verzeichnisse in einen oder mehreren Containern
+* geht am Union File System vorbei, "direkt" auf HD
+* Änderungen werden nicht berücksichtigt, wenn neues Image erzeugt wird
+* persistent bis kein Container sie mehr benutzt
 
+=== Verzeichnis von Host mounten
+
+[source, bash]
+----
+docker run -d -t --name myjenkins3 -p 8083:8080 -v /home/ollin/myjenkins3-home:/var/jenkins_home jenkins:latest
+
+ls -al /home/ollin/myjenkins3-home/
+
+docker stop myjenkins3 && docker rm myjenkins3
+
+docker run -d -t --name myjenkins4 -p 8084:8080 -v /home/ollin/myjenkins3-home:/var/jenkins_home jenkins:weekly
+----
 
 
 == Docker - weitere Themen
