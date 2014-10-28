@@ -1,5 +1,4 @@
 = DOCKER - Eine Einführung...
-:author:    Oliver Nautsch
 :imagesdir: images
 :icons:
 
@@ -55,7 +54,10 @@ image::dockerstory.png["usability over functionality", float="right"]
     ** Docker Daemon ( https://docs.docker.com/reference/api/docker_remote_api/[REST API] )
     ** Docker CLI
 * Image
+    ** Layers (wie git commits or changesets für ein Dateisystem)
+    ** ein Parent
 * Container
+    ** rw
 
 == Docker Techniken
 
@@ -67,13 +69,29 @@ image::docker-filesystems-multilayer.png[caption="Quelle: https://docs.docker.co
   in anderen Gruppen (Prozesse, Netzwerk, user IDs, Dateisysteme, etc.)
 * Overlay-Dateisystem (AuFS oder Btrfs)
 
+== Running a Container
+
+[source, bash]
+----
+sudo docker run --rm -i -t ubuntu:14.04.1 bash
+root@35d2e9236656:/# exit
+sudo docker ps -a
+----
+
+* _run_ - erzeugt einen Container und startet ihn
+* _--rm_ - entfernt den Container wieder, wenn er beendet wird
+* _-i_ - interactive / STDIN bleibt offen
+* _-t_ - Terminal
+* _ubuntu:14.04.1_ - <repo_name>[:<tag>] , repo_name - [<location>/][<user>/]<name>
+    ** Beispiele:
+        *** `myrepo.nautsch.ch:12345/nautsch/myimage:1.0`
+        *** `ubuntu`
+
 == Docker - weitere Themen
 
+* https://docs.docker.com/[Docker Documentation]
 * https://coreos.com/[CoreOs - Linux for Massive Server Deployments]
 * http://www.projectatomic.io/[Project Atomic - Deploy and Manage Your Docker Containers.]
 * https://github.com/GoogleCloudPlatform/kubernetes[Kubernetes - Container Cluster Managmement]
 * . . .
-
-
-
 
