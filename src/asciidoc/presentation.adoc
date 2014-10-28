@@ -28,7 +28,7 @@ google+:     https://plus.google.com/+OliverNautsch/[OliverNautsch] +
 '''
 
 Jugs Board Member seit 2014 +
-http://www.ossanschulen.ch/[OSS an Schulen] +
+http://www.ossanschulen.ch/[OSS an Schulen], http://www.meetup.com/Hackergarten-Zurich/[Hackergarten Zürich], http://zurich.codersonly.org/[Coders Only]
 #. . . running . . .#
 
 == Was ist Docker
@@ -157,7 +157,7 @@ docker rm myjenkins2 myjenkins1
 == data volumes 
 
 * spezielle Verzeichnisse in einen oder mehreren Containern
-* geht am Union File System vorbei, "direkt" auf HD
+* geht am Union File System vorbei
 * Änderungen werden nicht berücksichtigt, wenn neues Image erzeugt wird
 * persistent bis kein Container sie mehr benutzt
 
