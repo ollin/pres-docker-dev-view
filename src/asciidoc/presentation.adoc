@@ -78,6 +78,7 @@ root@35d2e9236656:/# exit
 sudo docker ps -a
 ----
 
+* _docker_ - das CLI
 * _run_ - erzeugt einen Container und startet ihn
 * _--rm_ - entfernt den Container wieder, wenn er beendet wird
 * _-i_ - interactive / STDIN bleibt offen
@@ -86,6 +87,7 @@ sudo docker ps -a
     ** Beispiele:
         *** `myrepo.nautsch.ch:12345/nautsch/myimage:1.0`
         *** `ubuntu`
+* _bash_ - der auszuführende Befehl
 
 == Docker - weitere Themen
 
