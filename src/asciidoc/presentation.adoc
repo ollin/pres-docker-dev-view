@@ -178,7 +178,7 @@ docker run -d -t --name myjenkins4 -p 8084:8080 -v /home/ollin/myjenkins3-home:/
 
 * internes Projekt bei dotCloud
 * erster Release 3.3.2013
-* September 2013 redhat Ankündigung
+* September 2013 redhat Ankündigung ( https://blog.openshift.com/openshift-v3-platform-combines-docker-kubernetes-atomic-and-more/[OpenShift v3] )
 * Oktober 2013 dotCloud Inc. -> Docker Inc.
 * Juni 2014 dockercon
     ** keynodes from IBM, google, rackspace
