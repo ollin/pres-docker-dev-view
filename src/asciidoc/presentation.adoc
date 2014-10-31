@@ -223,3 +223,12 @@ root@5baad6521a33:/tomcat7# cat /etc/hosts
 * https://github.com/GoogleCloudPlatform/kubernetes[Kubernetes - Container Cluster Managmement]
 * . . .
 
+== Diskussion
+
+*Vielen Dank für die Teilnahme!*
+
+Präsentation unter: https://github.com/ollin/pres-docker-dev-view
+
+email:      oliver.nautsch@gmail.com +
+twitter:    https://twitter.com/ollispieps[@ollispieps]
+
