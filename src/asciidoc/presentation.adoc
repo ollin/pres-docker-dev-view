@@ -232,4 +232,4 @@ Präsentation unter: https://github.com/ollin/pres-docker-dev-view
 email:      oliver.nautsch@gmail.com +
 twitter:    https://twitter.com/ollispieps[@ollispieps]
 
-image::https://i.creativecommons.org/l/by/4.0/88x31.png["Creative Commons License", alt="Creative Commons License", float="center", link="http://creativecommons.org/licenses/by/4.0/"]
+image::https://i.creativecommons.org/l/by/4.0/88x31.png["Creative Commons License", alt="Creative Commons License", link="http://creativecommons.org/licenses/by/4.0/"]
