@@ -194,6 +194,14 @@ root@5baad6521a33:/tomcat7# cat /etc/hosts
 ...
 ----
 
+== Fig
+
+image::fig.png["fig",float="right", link="http://www.fig.sh/"]
+"Fast, isolated development environments using Docker."
+
+* oder für Präsentationen
+* oder auch in Produktion
+
 == Anwendungsfälle
 
 * Continous Integration / Continuous Delivery

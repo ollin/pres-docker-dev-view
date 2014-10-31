@@ -1,0 +1,13 @@
+myregistry:
+  image: registry:0.8.1
+  ports:
+    - "5000:5000"
+
+myregistrygui:
+  image: atcol/docker-registry-ui
+  environment:
+    - REG1=http://myregistry:5000/v1/
+  ports:
+    - "8080:8080"
+  links:
+    - myregistry
