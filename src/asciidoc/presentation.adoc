@@ -194,6 +194,14 @@ root@5baad6521a33:/tomcat7# cat /etc/hosts
 ...
 ----
 
+== Anwendungsfälle
+
+* Continous Integration / Continuous Delivery
+* Produktionsumgebungen
+* Entwicklungsumgebungen
+* Buildumgebungen
+* . . .
+
 == Geschichte
 
 * internes Projekt bei dotCloud
