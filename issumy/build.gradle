@@ -1,0 +1,153 @@
+version = readVersion()
+
+apply from: "gradle/vertx.gradle"
+apply plugin: "jacoco"
+
+dependencies {
+  provided "org.codehaus.groovy:groovy-all:$groovyVersion"
+  provided "io.vertx:lang-groovy:$groovyLangModVersion@jar"
+}
+
+test {
+}
+
+jacoco {
+    toolVersion = "0.7.1.201405082137"
+}
+
+String readVersion() {
+    def versionFile = file('version.properties')
+
+    def env = System.getenv()
+    def versionSuffix = (env.PIPE_FLOW_NUMBER != null) ? ".$env.PIPE_FLOW_NUMBER" : '-SNAPSHOT'
+
+    Properties versionProps = new Properties()
+
+    versionFile.withInputStream { stream ->
+        versionProps.load(stream)
+    }
+
+    return versionProps.APP_VERSION_PREFIX + versionSuffix
+}
+
+task versionNumber << {
+    println "version: $version"
+}
+
+/*
+If you're uploading stuff to Maven, Gradle needs to generate a POM.
+Please edit the details below.
+ */
+def configurePom(def pom) {
+  pom.project {
+    name rootProject.name
+    description 'CH OPEN Workshoptage 2014 - Continuous Delivery - Beispiel Projekt - issumy'
+    inceptionYear '2014'
+    packaging 'jar'
+
+    url 'https://github.com/ollin/cd-ws-issumy'
+
+    developers {
+      developer {
+        id 'ollin'
+        name 'Oliver Nautsch'
+        email 'oliver.nautsch@gmail.com'
+      }
+    }
+
+    scm {
+      url 'https://github.com/ollin/cd-ws-issumy.git'
+    }
+
+    licenses {
+      license {
+        name 'The MIT License (MIT)'
+        url 'http://opensource.org/licenses/MIT'
+        distribution 'repo'
+      }
+    }
+
+    properties {
+      setProperty('project.build.sourceEncoding', 'UTF8')
+    }
+  }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://localhost:8181/nexus/content/repositories/releases/") {
+                authentication(
+                        userName: "deployment",
+                        password: "deployment9"
+                )
+            }
+            snapshotRepository(url: "http://localhost:8181/nexus/content/repositories/snapshots/") {
+                authentication(
+                        userName: "deployment",
+                        password: "deployment9"
+                )
+            }
+        }
+    }
+}
+
+task prepareModZipForDocker (type: Copy) {
+    from modZip
+    into 'build/docker'
+}
+
+task createDockerfile << {
+    def dockerFile = 'build/docker/Dockerfile'
+
+    def oldDockerFile = new File(dockerFile)
+
+    if (oldDockerFile.exists()) {
+        oldDockerFile.delete();
+    }
+
+    def newDockerFile = new File(dockerFile)
+    newDockerFile.createNewFile();
+
+    newDockerFile.withWriter { out ->
+        out.writeLine("FROM ollin/vertx")
+        out.writeLine("MAINTAINER Oliver Nautsch <oliver.nautsch@gmail.com>")
+        out.writeLine("")
+        out.writeLine("VOLUME /home/issumy")
+        out.writeLine("ADD $modZip.archiveName /home/issumy/$modZip.archiveName")
+        out.writeLine("EXPOSE 8080")
+        out.writeLine("")
+        out.writeLine("WORKDIR /home/issumy")
+        out.writeLine("CMD [\"runzip\", \"$modZip.archiveName\"]")
+    }
+}
+createDockerfile.dependsOn prepareModZipForDocker
+
+task createDockerImage (type: Exec) {
+    workingDir 'build/docker'
+    commandLine 'sudo', 'docker', 'build', '-t', "inventage/issumy:$version", '.'
+}
+createDockerImage.dependsOn createDockerfile, prepareModZipForDocker
+build.dependsOn createDockerImage
+
+task tagDockerImageLatest (type: Exec) {
+    commandLine 'sudo', 'docker', 'tag', "inventage/issumy:$version", "localhost:5000/inventage/issumy:latest"
+}
+tagDockerImageLatest.dependsOn createDockerImage
+
+task pushDockerImageLatest (type: Exec) {
+    commandLine 'sudo', 'docker', 'push', "localhost:5000/inventage/issumy:latest"
+}
+pushDockerImageLatest.dependsOn tagDockerImageLatest
+
+
+task tagDockerImageVersion (type: Exec) {
+    commandLine 'sudo', 'docker', 'tag', "inventage/issumy:$version", "localhost:5000/inventage/issumy:$version"
+}
+tagDockerImageVersion.dependsOn createDockerImage
+
+task pushDockerImageVersion (type: Exec) {
+    commandLine 'sudo', 'docker', 'push', "localhost:5000/inventage/issumy:$version"
+}
+pushDockerImageVersion.dependsOn tagDockerImageVersion
+uploadArchives.dependsOn pushDockerImageVersion, pushDockerImageLatest

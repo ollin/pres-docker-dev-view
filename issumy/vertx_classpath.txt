@@ -1,0 +1,5 @@
+src/main/resources
+bin
+out/production/issumy
+out/test/issumy
+build/deps

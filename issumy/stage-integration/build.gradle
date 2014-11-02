@@ -1,0 +1,35 @@
+apply plugin: 'java'
+
+repositories {
+    maven { url 'http://nexus:8181/nexus/content/groups/public/' }
+}
+
+dependencies {
+    testCompile "io.vertx:vertx-core:$vertxVersion"
+    testCompile "io.vertx:vertx-platform:$vertxVersion"
+    testCompile "junit:junit:$junitVersion"
+    testCompile "io.vertx:testtools:$toolsVersion"
+}
+
+task stopIntegrationContainer (type: Exec) {
+    ignoreExitValue true
+    commandLine 'sudo', 'docker', 'stop', "issumy-integration"
+}
+
+task removeIntegrationContainer (type: Exec) {
+    ignoreExitValue true
+    commandLine 'sudo', 'docker', 'rm', "issumy-integration"
+}
+removeIntegrationContainer.dependsOn stopIntegrationContainer
+
+task deployIntegration (type: Exec) {
+    def env = System.getenv()
+    commandLine 'sudo', 'docker', 'run', '-d', '-p', '8071:8080', '--name', "issumy-integration", "localhost:5000/inventage/issumy:$env.APP_VERSION"
+}
+deployIntegration.dependsOn removeIntegrationContainer
+
+test.dependsOn deployIntegration
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.10'
+}

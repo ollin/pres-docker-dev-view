@@ -1,0 +1,9 @@
+{
+  "main":"com.inventage.issumy.issues.IssuesStarterVerticle",
+
+  "description":"ch open, cd ws, example",
+  "licenses": ["The MIT License (MIT)"],
+  "author": "Oliver Nautsch",
+
+  "auto-redeploy": true
+}
