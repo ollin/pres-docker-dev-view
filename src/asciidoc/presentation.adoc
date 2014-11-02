@@ -116,35 +116,36 @@ Sending build context to Docker daemon  2.56 kB
 Sending build context to Docker daemon
 Step 0 : FROM ubuntu:14.04.1
  ---> c4ff7513909d
- Step 1 : MAINTAINER Oliver Nautsch <oliver.nautsch@gmail.com>
-  ---> Using cache
-   ---> 98658a58fa03
-   Step 2 : RUN touch huschihops.txt
-    ---> Running in 2d4d554cbf2a
-     ---> 01ee073272ec
-     Removing intermediate container 2d4d554cbf2a
-     Successfully built 01ee073272ec
+Step 1 : MAINTAINER Oliver Nautsch <oliver.nautsch@gmail.com>
+ ---> Using cache
+ ---> 98658a58fa03
+Step 2 : RUN touch huschihops.txt
+ ---> Running in 2d4d554cbf2a
+ ---> 01ee073272ec
+Removing intermediate container 2d4d554cbf2a
+Successfully built 01ee073272ec
 
-     sudo docker images
-     REPOSITORY                       TAG                   IMAGE ID            CREATED             VIRTUAL SIZE
-     ollin/huschihops                 1.0                   01ee073272ec        31 seconds ago      225.4 MB
-     . . .
+sudo docker images
+REPOSITORY                       TAG                   IMAGE ID            CREATED             VIRTUAL SIZE
+ollin/huschihops                 1.0                   01ee073272ec        31 seconds ago      225.4 MB
+. . .
 ----
 
-== Benutzen eines Images
+== Image - Container
 
 [source, bash]
 ----
 docker inspect jenkins
 . . . (Metainformationen ueber Image als JSON, u.a. ExposedPorts)
 
-docker run -d -t -p 8080:8080 --name myjenkins1 jenkins
-docker run -d -t -p 8081:8080 --name myjenkins2 jenkins
-
-docker ps
-docker stop myjenkins1
+docker create -d -t -p 8080:8080 --name myjenkins1 jenkins  # erzeuge job 'aaaa'
 docker ps
 docker start myjenkins1
+docker ps
+docker inspect myjenkins1
+docker run -d -t -p 8081:8080 --name myjenkins2 jenkins  # erzeuge job 'bbbb'
+
+docker ps
 
 docker stop myjenkins2 myjenkins1
 docker rm myjenkins2 myjenkins1
@@ -161,20 +162,24 @@ docker rm myjenkins2 myjenkins1
 * Änderungen werden nicht berücksichtigt, wenn neues Image erzeugt wird
 * persistent bis kein Container sie mehr benutzt
 
-=== Verzeichnis von Host mounten
+== Verzeichnis von Host mounten
 
 [source, bash]
 ----
-docker run -d -t --name myjenkins3 -p 8083:8080 -v /home/ollin/myjenkins3-home:/var/jenkins_home jenkins:latest
+docker run -d -t --name myjenkins3 -p 8083:8080 -v /home/ollin/docker_data/myjenkins3-home:/var/jenkins_home jenkins:latest
 
 ls -al /home/ollin/myjenkins3-home/
 
 docker stop myjenkins3 && docker rm myjenkins3
 
-docker run -d -t --name myjenkins4 -p 8084:8080 -v /home/ollin/myjenkins3-home:/var/jenkins_home jenkins:weekly
+docker run -d -t --name myjenkins4 -p 8084:8080 -v /home/ollin/docker_data/myjenkins3-home:/var/jenkins_home jenkins:weekly
 ----
+image::data-volumes.png["data volumes", alt="data-volumes.png", float="right"]
 
 == links
+
+* Umgebungsvariablen
+* /etc/hosts
 
 [source, bash]
 ----
