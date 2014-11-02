@@ -11,7 +11,7 @@ removeProductionContainer.dependsOn stopProductionContainer
 
 task deployProduction (type: Exec) {
     def env = System.getenv()
-    commandLine 'sudo', 'docker', 'run', '-d', '-p', '8080:8080', '--name', "issumy-production", "localhost:5000/inventage/issumy:$env.APP_VERSION"
+    commandLine 'sudo', 'docker', 'run', '-d', '-p', '8080:8080', '--name', "issumy-production", "myregistry:5000/ollin/issumy:$env.APP_VERSION"
 }
 deployProduction.dependsOn removeProductionContainer
 

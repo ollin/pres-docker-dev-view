@@ -24,7 +24,7 @@ removeIntegrationContainer.dependsOn stopIntegrationContainer
 
 task deployIntegration (type: Exec) {
     def env = System.getenv()
-    commandLine 'sudo', 'docker', 'run', '-d', '-p', '8071:8080', '--name', "issumy-integration", "localhost:5000/inventage/issumy:$env.APP_VERSION"
+    commandLine 'sudo', 'docker', 'run', '-d', '-p', '8071:8080', '--name', "issumy-integration", "myregistry:5000/ollin/issumy:$env.APP_VERSION"
 }
 deployIntegration.dependsOn removeIntegrationContainer
 

@@ -41,7 +41,7 @@ Please edit the details below.
 def configurePom(def pom) {
   pom.project {
     name rootProject.name
-    description 'CH OPEN Workshoptage 2014 - Continuous Delivery - Beispiel Projekt - issumy'
+    description 'Beispiel Projekt - issumy'
     inceptionYear '2014'
     packaging 'jar'
 
@@ -118,7 +118,7 @@ task createDockerfile << {
         out.writeLine("EXPOSE 8080")
         out.writeLine("")
         out.writeLine("WORKDIR /home/issumy")
-        out.writeLine("CMD [\"runzip\", \"$modZip.archiveName\"]")
+        out.writeLine("CMD [\"vertx\", \"runzip\", \"$modZip.archiveName\"]")
     }
 }
 createDockerfile.dependsOn prepareModZipForDocker
