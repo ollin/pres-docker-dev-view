@@ -31,7 +31,7 @@ String readVersion() {
 }
 
 task versionNumber << {
-    println "version: $version"
+    logger.info("version: $version")
 }
 
 /*
