@@ -19,14 +19,3 @@ mynexus:
   volumes:
     - sonatype-work:/opt/sonatype-work
 
-myjenkins:
-  image: jenkins
-  ports:
-    - "8282:8080"
-  volumes:
-    - jenkins_home:/var/jenkins_home
-    - ../..:/var/pres-docker-dev-view
-  links:
-    - mynexus
-    - myregistry
-

@@ -76,16 +76,16 @@ def configurePom(def pom) {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: "http://localhost:8181/nexus/content/repositories/releases/") {
+            repository(url: "http://mynexus:8181/nexus/content/repositories/releases/") {
                 authentication(
                         userName: "deployment",
-                        password: "deployment9"
+                        password: "deployment123"
                 )
             }
-            snapshotRepository(url: "http://localhost:8181/nexus/content/repositories/snapshots/") {
+            snapshotRepository(url: "http://mynexus:8181/nexus/content/repositories/snapshots/") {
                 authentication(
                         userName: "deployment",
-                        password: "deployment9"
+                        password: "deployment123"
                 )
             }
         }
@@ -125,29 +125,29 @@ createDockerfile.dependsOn prepareModZipForDocker
 
 task createDockerImage (type: Exec) {
     workingDir 'build/docker'
-    commandLine 'sudo', 'docker', 'build', '-t', "inventage/issumy:$version", '.'
+    commandLine 'sudo', 'docker', 'build', '-t', "ollin/issumy:$version", '.'
 }
 createDockerImage.dependsOn createDockerfile, prepareModZipForDocker
 build.dependsOn createDockerImage
 
 task tagDockerImageLatest (type: Exec) {
-    commandLine 'sudo', 'docker', 'tag', "inventage/issumy:$version", "localhost:5000/inventage/issumy:latest"
+    commandLine 'sudo', 'docker', 'tag', "ollin/issumy:$version", "myregistry:5000/ollin/issumy:latest"
 }
 tagDockerImageLatest.dependsOn createDockerImage
 
 task pushDockerImageLatest (type: Exec) {
-    commandLine 'sudo', 'docker', 'push', "localhost:5000/inventage/issumy:latest"
+    commandLine 'sudo', 'docker', 'push', "myregistry:5000/ollin/issumy:latest"
 }
 pushDockerImageLatest.dependsOn tagDockerImageLatest
 
 
 task tagDockerImageVersion (type: Exec) {
-    commandLine 'sudo', 'docker', 'tag', "inventage/issumy:$version", "localhost:5000/inventage/issumy:$version"
+    commandLine 'sudo', 'docker', 'tag', "ollin/issumy:$version", "myregistry:5000/ollin/issumy:$version"
 }
 tagDockerImageVersion.dependsOn createDockerImage
 
 task pushDockerImageVersion (type: Exec) {
-    commandLine 'sudo', 'docker', 'push', "localhost:5000/inventage/issumy:$version"
+    commandLine 'sudo', 'docker', 'push', "myregistry:5000/ollin/issumy:$version"
 }
 pushDockerImageVersion.dependsOn tagDockerImageVersion
 uploadArchives.dependsOn pushDockerImageVersion, pushDockerImageLatest
