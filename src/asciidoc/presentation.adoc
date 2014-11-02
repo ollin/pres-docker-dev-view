@@ -204,14 +204,31 @@ root@5baad6521a33:/tomcat7# cat /etc/hosts
 image::fig.png["fig",float="right", link="http://www.fig.sh/"]
 "Fast, isolated development environments using Docker."
 
+* Entwicklungsumgebungen (z.B. Tools)
 * oder in Produktion
 * oder auch für Präsentationen :)
+
+=== Beispiel für Integration von push in build
+
+* fig.yml
 
 [source, bash]
 ----
 docker-handson/fig/fig up -d
-issumy/gradlew uploadArchives
 ----
+
+* nexus leer
+* registry leer
+* build.gradle
+
+[source, bash]
+----
+issumy/gradlew uploadArchives
+
+docker run --rm -i -t -p 9090:8080 myregistry:5000/ollin/issumy
+curl http://localhost:9090/issues
+----
+
 
 
 == Anwendungsfälle
