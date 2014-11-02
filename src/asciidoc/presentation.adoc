@@ -155,7 +155,7 @@ docker rm myjenkins2 myjenkins1
 * Ports von Container an Host herausgeben
 * _docker rm_ und die Daten sind weg!
 
-== data volumes 
+== Data Volumes
 
 * spezielle Verzeichnisse in einen oder mehreren Containern
 * geht am Union File System vorbei
@@ -168,7 +168,7 @@ docker rm myjenkins2 myjenkins1
 ----
 docker run -d -t --name myjenkins3 -p 8083:8080 -v /home/ollin/docker_data/myjenkins3-home:/var/jenkins_home jenkins:latest
 
-ls -al /home/ollin/myjenkins3-home/
+ls -al /home/ollin/docker_data/myjenkins3-home
 
 docker stop myjenkins3 && docker rm myjenkins3
 
@@ -176,7 +176,22 @@ docker run -d -t --name myjenkins4 -p 8084:8080 -v /home/ollin/docker_data/myjen
 ----
 image::data-volumes.png["data volumes", alt="data-volumes.png", float="right"]
 
-== links
+== Data Container
+
+* Container, der nur ein oder mehrere Volumes definiert
+
+[source, bash]
+----
+docker run --name myjenkins_data -v /var/jenkins_home tianon/true
+docker run -d -t --name myjenkins5 -p 8085:8080 -u root --volumes-from="myjenkins_data" jenkins:latest
+
+docker rm -f myjenkins5
+
+docker run -d -t --name myjenkins6 -p 8086:8080 -u root --volumes-from="myjenkins_data" jenkins:weekly
+----
+image::data-container.png["data container", alt="data-container.png", float="right"]
+
+== Links
 
 * Umgebungsvariablen
 * /etc/hosts
