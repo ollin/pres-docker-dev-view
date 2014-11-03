@@ -273,6 +273,9 @@ image::push-image.png[alt="push image", float="right"]
 
 == Diskussion
 
+* Docker - Java?
+* Ein Prozess und viele Anwendungen (JEE Modell) vs. viele Prozesse?
+
 *Vielen Dank für die Teilnahme!*
 
 Präsentation unter: https://github.com/ollin/pres-docker-dev-view
