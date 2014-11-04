@@ -284,3 +284,12 @@ email:      oliver.nautsch@gmail.com +
 twitter:    https://twitter.com/ollispieps[@ollispieps]
 
 image::https://i.creativecommons.org/l/by/4.0/88x31.png["Creative Commons License", alt="Creative Commons License", link="http://creativecommons.org/licenses/by/4.0/"]
+
+== Antworten . . .
+
+auf Fragen für die ich keine Antwort während des Vortrages hatte.
+
+[qanda]
+Gibt es die Möglichkeit Applikationen mit graphischen Oberflächen mit Docker zu starten? Im Vortrag sind nur _headless_ Applikationen gezeigt worden.::
+    Ja, diese Möglichkeit gibt es tatsächlich. Hier ein Beispiel für Firefox und Netbeans: http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/[Running GUI apps with Docker by Fábio Rehm].
+
