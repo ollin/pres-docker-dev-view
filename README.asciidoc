@@ -1,7 +1,7 @@
 pres-docker-dev-view
 ====================
 
-image::"https://badges.gitter.im/Join Chat.svg"["Gitter", link="https://gitter.im/ollin/pres-docker-dev-view?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
+image::++https://badges.gitter.im/Join Chat.svg++["Gitter", link="https://gitter.im/ollin/pres-docker-dev-view?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
 
 Docker - Eine Einführung
 
