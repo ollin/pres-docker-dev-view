@@ -150,7 +150,7 @@ ollin/huschihops                 1.0                   01ee073272ec        31 se
 docker inspect jenkins
 . . . (Metainformationen ueber Image als JSON, u.a. ExposedPorts)
 
-docker create -d -t -p 8080:8080 --name myjenkins1 jenkins  # erzeuge job 'aaaa'
+docker create -t -p 8080:8080 --name myjenkins1 jenkins  # erzeuge job 'aaaa'
 docker ps
 docker start myjenkins1
 docker ps
