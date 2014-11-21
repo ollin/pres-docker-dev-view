@@ -45,6 +45,17 @@ image::container-vs-vm.png[caption="Quelle: https://www.docker.com/whatisdocker/
 
 * Beispiel: virtualbox via https://www.vagrantup.com/[Vagrant] vs docker
 
+== Anwendungsfälle
+
+* Entwicklungs- und Buildumgebungen
+* Continous Integration / Continuous Delivery
+* Produktionsumgebungen
+* Mandantenfähigkeit
+* Server Konsolidierung
+* Applikationsisolierung
+* einfachere Konfiguration (immutable infrastructure)
+* . . .
+
 == Docker Elemente
 
 image::dockerstory.png["usability over functionality", float="right"]
@@ -56,8 +67,9 @@ image::dockerstory.png["usability over functionality", float="right"]
 * Image
     ** Layers (wie git commits or changesets für ein Dateisystem)
     ** ein Parent
+    ** r
 * Container
-    ** rw
+    ** rw via Union File System
 
 == Docker Techniken
 
@@ -238,17 +250,6 @@ curl http://localhost:9090/issues
 ----
 
 image::push-image.png[alt="push image", float="right"]
-
-== Anwendungsfälle
-
-* Entwicklungs- und Buildumgebungen
-* Continous Integration / Continuous Delivery
-* Produktionsumgebungen
-* Mandantenfähigkeit
-* Server Konsolidierung
-* Applikationsisolierung
-* einfachere Konfiguration (immutable infrastructure)
-* . . .
 
 == Geschichte
 
