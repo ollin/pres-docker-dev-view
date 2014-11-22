@@ -286,9 +286,7 @@ twitter:    https://twitter.com/ollispieps[@ollispieps]
 
 image::https://i.creativecommons.org/l/by/4.0/88x31.png["Creative Commons License", alt="Creative Commons License", link="http://creativecommons.org/licenses/by/4.0/"]
 
-== Antworten . . .
-
-auf Fragen für die ich keine Antwort während des Vortrages hatte.
+== FAQ
 
 [qanda]
 Gibt es die Möglichkeit Applikationen mit graphischen Oberflächen mit Docker zu starten? Im Vortrag sind nur _headless_ Applikationen gezeigt worden.::
