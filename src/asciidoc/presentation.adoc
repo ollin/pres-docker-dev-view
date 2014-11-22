@@ -1,4 +1,4 @@
-= DOCKER - Eine Einführung...
+= DOCKER - Eine Einführung
 :imagesdir: images
 :icons:
 
