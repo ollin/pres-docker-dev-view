@@ -8,8 +8,7 @@
 image::ollin.2013.340x268p.png["Oliver Nautsch",float="right", link="http://www.nautsch.com/"]
 _Oliver Nautsch_
 
-* Inventage AG
-* ab 2015 selbsständig
+* selbständig - Nautsch GmbH ( in Gründung )
 
 _Software Craftsman_ 
 
@@ -27,7 +26,7 @@ google+:     https://plus.google.com/+OliverNautsch/[OliverNautsch] +
 
 '''
 Familie, 2 Kinder +
-Jugs Board Member seit 2014 +
+http://www.jug.ch/[jug.ch] Board Member seit 2014 +
 http://www.ossanschulen.ch/[OSS an Schulen], http://www.meetup.com/Hackergarten-Zurich/[Hackergarten Zürich], http://zurich.codersonly.org/[Coders Only Zürich] +
 . . . running . . .
 
@@ -95,7 +94,7 @@ sudo docker ps -a
 * _--rm_ - entfernt den Container wieder, wenn er beendet wird
 * _-i_ - interactive / STDIN bleibt offen
 * _-t_ - Terminal
-* _ubuntu:14.04.1_ - <repo_name>[:<tag>] , repo_name - [<location>/][<user>/]<name>
+* _ubuntu:14.04.1_ - [<location>/][<user>/]<name>[:<tag>]
     ** Beispiele:
         *** `myrepo.nautsch.ch:12345/nautsch/myimage:1.0`
         *** `ubuntu`
@@ -254,15 +253,22 @@ image::push-image.png[alt="push image", float="right"]
 == Geschichte
 
 * internes Projekt bei dotCloud
-* erster Release 3.3.2013
 * September 2013 redhat Ankündigung ( https://blog.openshift.com/openshift-v3-platform-combines-docker-kubernetes-atomic-and-more/[OpenShift v3] )
 * Oktober 2013 dotCloud Inc. -> Docker Inc.
 * Juni 2014 dockercon
     ** keynodes from IBM, google, rackspace
 * Juli 2014 Windows Azure + Docker
-* aktuell Version 1.3.x (exec, create, signing)
-* 13'000+ dockerisierte Applikationen
+* Mid 2015 Docker Container Support for Windows Server
+* aktuell Version 1.4.1
+    ** 2014-12-11 - 1.4 - stability
+    ** 2014-10-16 - 1.3 - exec, create, signing
+    **  . . .
+    ** 2014-06-09 - 1.0 - first stable version
+    **  . . .
+    ** 2013-03-20 - first public version
+* 14'000+ dockerisierte Applikationen
 * 2014 15M + 40M
+* 3,200 forks, and nearly 700 contributors
 
 == Docker - weitere Themen
 
