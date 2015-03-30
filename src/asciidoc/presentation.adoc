@@ -8,17 +8,17 @@
 image::ollin.2013.340x268p.png["Oliver Nautsch",float="right", link="http://www.nautsch.com/"]
 _Oliver Nautsch_
 
-* selbständig - Nautsch GmbH ( in Gründung )
+* selbständig - Nautsch GmbH, Zürich
 
 _Software Craftsman_ 
 
- * Engineer, Coach, Architect, Trainer, Team Lead, Consultant, Gardener, ...
+ * Engineer, Coach, Architect, Trainer, Consultant, Gardener, ...
  * Microservices, Open Source, TDD, DDD, CD, Virtualisierung, ...
 
 
 '''
 
-email:      oliver.nautsch@gmail.com +
+email:      oliver.nautsch@nautsch.com +
 twitter:    https://twitter.com/ollispieps[@ollispieps] +
 github:     https://github.com/ollin[@ollin] +
 google+:     https://plus.google.com/+OliverNautsch/[OliverNautsch] +
@@ -26,8 +26,10 @@ google+:     https://plus.google.com/+OliverNautsch/[OliverNautsch] +
 
 '''
 Familie, 2 Kinder +
-http://www.jug.ch/[jug.ch] Board Member seit 2014 +
-http://www.ossanschulen.ch/[OSS an Schulen], http://www.meetup.com/Hackergarten-Zurich/[Hackergarten Zürich], http://zurich.codersonly.org/[Coders Only Zürich] +
+http://www.jug.ch/[jug.ch] Board Member seit 2014 / Präsident seit 2015 +
+http://www.ossanschulen.ch/[OSS an Schulen],
+( http://www.meetup.com/Hackergarten-Zurich/[Hackergarten Zürich] ),
+( http://zurich.codersonly.org/[Coders Only Zürich] ), ... +
 . . . running . . .
 
 == Was ist Docker
@@ -206,7 +208,7 @@ image::data-container.png["data container", alt="data-container.png", float="rig
 
 [source, bash]
 ----
-docker run -d -t -p 5000:5000 --name myregistry registry:0.8.1
+docker run -d -t -p 5000:5000 --name myregistry registry:0.9.1
 curl http://localhost:5000
 
 docker run -d -t -P --name myregistrygui --link myregistry:myregistry -e REG1=http://myregistry:5000/v1/ atcol/docker-registry-ui
@@ -222,10 +224,10 @@ root@5baad6521a33:/tomcat7# cat /etc/hosts
 ...
 ----
 
-== Fig
+== docker-componse
 
-image::fig.png["fig",float="right", link="http://www.fig.sh/"]
-"Fast, isolated development environments using Docker."
+image::docker-whales-transparent.png[docker-compose, 400, 400, float="right", link="https://docs.docker.com/compose/"]
+"...define a multi-container application in a single file..."
 
 * Entwicklungsumgebungen (z.B. Tools)
 * Produktion
@@ -233,9 +235,13 @@ image::fig.png["fig",float="right", link="http://www.fig.sh/"]
 
 [source, bash]
 ----
-cd docker-handson/fig/
-less fig.yml
-fig up -d
+cd docker-handson
+less docker-compose.yml
+sudo docker-compose up -d
+...
+sudo docker-compose stop
+...
+sudo docker-compose start
 ----
 
 == Veröffentlichung eines Images
@@ -260,6 +266,7 @@ image::push-image.png[alt="push image", float="right"]
 * Juli 2014 Windows Azure + Docker
 * Mid 2015 Docker Container Support for Windows Server
 * aktuell Version 1.4.1
+    ** 2015-02-03 - 1.5 - read only file system, IPv6 zwischen Containern
     ** 2014-12-11 - 1.4 - stability
     ** 2014-10-16 - 1.3 - exec, create, signing
     **  . . .
@@ -272,6 +279,8 @@ image::push-image.png[alt="push image", float="right"]
 
 == Docker - weitere Themen
 
+* https://docs.docker.com/swarm/[Docker Swarm] - Clustering, pool of containers into single, virtual host
+* http://boot2docker.io/[boot2docker] - lightweight Linux distribution for OS X and Windows, 5 sec, ~27 MB,
 * https://docs.docker.com/[Docker Documentation]
 * https://coreos.com/[CoreOs - Linux for Massive Server Deployments]
 * http://www.projectatomic.io/[Project Atomic - Deploy and Manage Your Docker Containers.]
@@ -287,7 +296,7 @@ image::push-image.png[alt="push image", float="right"]
 
 Präsentation unter: https://github.com/ollin/pres-docker-dev-view
 
-email:      oliver.nautsch@gmail.com +
+email:      oliver.nautsch@nautsch.com +
 twitter:    https://twitter.com/ollispieps[@ollispieps]
 
 image::https://i.creativecommons.org/l/by/4.0/88x31.png["Creative Commons License", alt="Creative Commons License", link="http://creativecommons.org/licenses/by/4.0/"]
