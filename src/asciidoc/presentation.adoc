@@ -266,7 +266,7 @@ image::push-image.png[alt="push image", float="right"]
     ** keynodes from IBM, google, rackspace
 * Juli 2014 Windows Azure + Docker
 * Mid 2015 Docker Container Support for Windows Server
-* aktuell Version 1.4.1
+* aktuell Version 1.5.0
     ** 2015-02-03 - 1.5 - read only file system, IPv6 zwischen Containern
     ** 2014-12-11 - 1.4 - stability
     ** 2014-10-16 - 1.3 - exec, create, signing
