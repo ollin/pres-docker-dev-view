@@ -28,7 +28,7 @@ google+:     https://plus.google.com/+OliverNautsch/[OliverNautsch] +
 '''
 Familie, 2 Kinder +
 http://www.jug.ch/[jug.ch] Board Member seit 2014 / Präsident seit 2015 +
-http://www.ossanschulen.ch/[OSS an Schulen (ch/open),
+http://www.ossanschulen.ch/[OSS an Schulen (ch/open)],
 ( http://www.meetup.com/Hackergarten-Zurich/[Hackergarten Zürich] ),
 ( http://zurich.codersonly.org/[Coders Only Zürich] ), ... +
 . . . running . . .
