@@ -8,6 +8,6 @@ myregistrygui:
   environment:
     - REG1=http://myregistry:5000/v1/
   ports:
-    - "8080:8080"
+    - "8111:8080"
   links:
     - myregistry

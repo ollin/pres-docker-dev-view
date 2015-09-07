@@ -225,7 +225,7 @@ root@5baad6521a33:/tomcat7# cat /etc/hosts
 ...
 ----
 
-== docker-componse
+== docker-compose
 
 image::docker-whales-transparent.png[docker-compose, 400, 400, float="right", link="https://docs.docker.com/compose/"]
 "...define a multi-container application in a single file..."
@@ -266,7 +266,10 @@ image::push-image.png[alt="push image", float="right"]
     ** keynodes from IBM, google, rackspace
 * Juli 2014 Windows Azure + Docker
 * Mid 2015 Docker Container Support for Windows Server
-* aktuell Version 1.5.0
+* aktuell Version 1.8.1
+    ** 2015-08-12 - 1.8 - Docker content trust, Docker toolbox, ...
+    ** 2015-06-22 - 1.7 - plugin system for engine, ... (Orchestration updates, Swarm, Machine, Compose)
+    ** 2015-04-16 - 1.6 - labels, windows client preview, logging drivers
     ** 2015-02-03 - 1.5 - read only file system, IPv6 zwischen Containern
     ** 2014-12-11 - 1.4 - stability
     ** 2014-10-16 - 1.3 - exec, create, signing
@@ -274,14 +277,16 @@ image::push-image.png[alt="push image", float="right"]
     ** 2014-06-09 - 1.0 - first stable version
     **  . . .
     ** 2013-03-20 - first public version
-* 14'000+ dockerisierte Applikationen
-* 2014 15M + 40M
-* 3,200 forks, and nearly 700 contributors
+* 14'000+ dockerisierte Applikationen (Stand Feb. 2015)
+* 3200 forks Feb. 2015 / 6,300 forks Sept. 2015
 
 == Docker - weitere Themen
 
 * https://docs.docker.com/swarm/[Docker Swarm] - Clustering, pool of containers into single, virtual host
-* http://boot2docker.io/[boot2docker] - lightweight Linux distribution for OS X and Windows, 5 sec, ~27 MB,
+* https://www.docker.com/toolbox[Docker Toolbox] - Run it on Windows and Mac
+    ** Docker Machine
+    ** Docker Compose
+    ** ...
 * https://docs.docker.com/[Docker Documentation]
 * https://coreos.com/[CoreOs - Linux for Massive Server Deployments]
 * http://www.projectatomic.io/[Project Atomic - Deploy and Manage Your Docker Containers.]
