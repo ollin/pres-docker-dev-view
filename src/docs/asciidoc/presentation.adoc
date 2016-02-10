@@ -1,0 +1,315 @@
+= DOCKER - Eine Einführung
+:imagesdir: images
+:icons:
+
+
+== ...aus Sicht eines Softwareentwicklers
+
+image::ollin.2013.340x268p.png["Oliver Nautsch",float="right", link="http://www.nautsch.com/"]
+_Oliver Nautsch_
+
+* selbständig - Nautsch GmbH, Zürich
+
+_Software Craftsman_ 
+
+ * Engineer, Coach, Architect, Trainer, Consultant, Gardener, ...
+ * Microservices, Open Source, TDD, DDD, CD, Virtualisierung, ...
+ * Java, ( JVM Sprachen ), ...
+
+
+'''
+
+email:      oliver.nautsch@nautsch.com +
+twitter:    https://twitter.com/ollispieps[@ollispieps] +
+github:     https://github.com/ollin[@ollin] +
+google+:     https://plus.google.com/+OliverNautsch/[OliverNautsch] +
+
+
+'''
+Familie, 2 Kinder +
+http://www.jug.ch/[jug.ch] Board Member seit 2014 / Präsident seit 2015 +
+http://www.ossanschulen.ch/[OSS an Schulen (ch/open)],
+( http://www.meetup.com/Hackergarten-Zurich/[Hackergarten Zürich] ),
+( http://zurich.codersonly.org/[Coders Only Zürich] ), ... +
+. . . running . . .
+
+== Was ist Docker
+
+image::docker.png["docker",float="right", link="http://www.docker.com/"]
+
+* Open Source Software
+* Applikationen in Software Containern
+* OS-Level Virtualisierung auf Linux
+
+== Unterschied zu virtuellen Maschinen
+
+image::container-vs-vm.png[caption="Quelle: https://www.docker.com/whatisdocker/", alt="Unterschied zu VM's"]
+
+* Beispiel: virtualbox via https://www.vagrantup.com/[Vagrant] vs docker
+
+== Anwendungsfälle
+
+* Entwicklungs- und Buildumgebungen
+* Continous Integration / Continuous Delivery
+* Produktionsumgebungen
+* Mandantenfähigkeit
+* Server Konsolidierung
+* Applikationsisolierung
+* einfachere Konfiguration (immutable infrastructure)
+* . . .
+
+== Docker Elemente
+
+image::dockerstory.png["usability over functionality", float="right"]
+
+* https://hub.docker.com/[Docker Hub] ist eine Registry für Images
+* Docker Engine
+    ** Docker Daemon ( https://docs.docker.com/reference/api/docker_remote_api/[REST API] )
+    ** Docker CLI
+* Image
+    ** Layers (wie git commits or changesets für ein Dateisystem)
+    ** ein Parent
+    ** r
+* Container
+    ** rw via Union File System
+
+== Docker Techniken
+
+image::docker-filesystems-multilayer.png[caption="Quelle: https://docs.docker.com/terms/layer/#layer", alt="Layers", float="right", width=400]
+
+* cgroups - control groups - Linux Kernel Funktion zum begrenzen, messen und isolieren von
+  Ressourcen (CPU, Speicher, disc I/O etc.)
+* kernel namespaces - trennen der Sichtbarkeit von Ressourcen
+  in anderen Gruppen (Prozesse, Netzwerk, user IDs, Dateisysteme, etc.)
+* Overlay-Dateisystem (AuFS oder Btrfs)
+
+== Running a Container
+
+[source, bash]
+----
+docker run --rm -i -t ubuntu:14.04.3 bash
+root@35d2e9236656:/# exit
+docker ps -a
+----
+
+* _docker_ - das CLI
+* _run_ - erzeugt einen Container und startet ihn
+* _--rm_ - entfernt den Container wieder, wenn er beendet wird
+* _-i_ - interactive / STDIN bleibt offen
+* _-t_ - Terminal
+* _ubuntu:14.04.3_ - [<location>/][<user>/]<name>[:<tag>]
+    ** Beispiele:
+        *** `myrepo.nautsch.ch:12345/nautsch/myimage:1.0`
+        *** `ubuntu`
+* _bash_ - der auszuführende Befehl
+
+== Erzeugen eines Images - via commit
+
+[source, bash]
+----
+docker run -t -i  ubuntu:14.04.3 bash
+root@dcde95ca3e5c:/# touch huschihops.txt
+root@dcde95ca3e5c:/# exit
+docker ps -a
+docker commit -m="added huschihops.txt" -a="Oliver Nautsch" dcde95ca3e5c ollin/huschihops:1.0
+----
+
+== . . . - via Dockerfile
+
+[source, txt]
+----
+FROM ubuntu:14.04.3
+MAINTAINER Oliver Nautsch <oliver.nautsch@gmail.com>
+
+RUN touch huschihops.txt
+----
+[source, bash]
+----
+docker build -t ollin/huschihops:1.0 .
+Sending build context to Docker daemon  2.56 kB
+Sending build context to Docker daemon
+Step 0 : FROM ubuntu:14.04.3
+ ---> c4ff7513909d
+Step 1 : MAINTAINER Oliver Nautsch <oliver.nautsch@gmail.com>
+ ---> Using cache
+ ---> 98658a58fa03
+Step 2 : RUN touch huschihops.txt
+ ---> Running in 2d4d554cbf2a
+ ---> 01ee073272ec
+Removing intermediate container 2d4d554cbf2a
+Successfully built 01ee073272ec
+
+docker images
+REPOSITORY                       TAG                   IMAGE ID            CREATED             VIRTUAL SIZE
+ollin/huschihops                 1.0                   01ee073272ec        31 seconds ago      225.4 MB
+. . .
+----
+
+== Image - Container
+
+[source, bash]
+----
+docker inspect jenkins
+. . . (Metainformationen ueber Image als JSON, u.a. ExposedPorts)
+
+docker create -t -p 8080:8080 --name myjenkins1 jenkins  # erzeuge job 'aaaa'
+docker ps
+docker start myjenkins1
+docker ps
+docker inspect myjenkins1
+docker run -d -t -p 8081:8080 --name myjenkins2 jenkins  # erzeuge job 'bbbb'
+docker ps
+
+docker rm -f myjenkins2 myjenkins1
+----
+
+* erzeugen vs. starten
+* Ports von Container an Host herausgeben
+* _docker rm_ und die Daten sind weg!
+
+== Data Volumes
+
+* spezielle Verzeichnisse in einen oder mehreren Containern
+* geht am Union File System vorbei
+* Änderungen werden nicht berücksichtigt, wenn neues Image erzeugt wird
+* persistent bis kein Container sie mehr benutzt
+
+== Verzeichnis von Host mounten
+
+[source, bash]
+----
+docker run -d -t --name myjenkins3 -p 8083:8080 -v /home/ollin/docker_data/myjenkins3-home:/var/jenkins_home jenkins:latest
+
+ls -al /home/ollin/docker_data/myjenkins3-home
+
+docker stop myjenkins3 && docker rm myjenkins3
+
+docker run -d -t --name myjenkins4 -p 8084:8080 -v /home/ollin/docker_data/myjenkins3-home:/var/jenkins_home jenkins:weekly
+----
+image::data-volumes.png["data volumes", alt="data-volumes.png", float="right"]
+
+== Data Container
+
+[source, bash]
+----
+docker run --name myjenkins_data -v /var/jenkins_home tianon/true
+docker run -d -t --name myjenkins5 -p 8085:8080 -u root --volumes-from="myjenkins_data" jenkins:latest
+
+docker rm -f myjenkins5
+
+docker run -d -t --name myjenkins6 -p 8086:8080 -u root --volumes-from="myjenkins_data" jenkins:weekly
+----
+image::data-container.png["data container", alt="data-container.png", float="right"]
+* Container, der nur ein oder mehrere Volumes definiert
+
+== Links
+
+* Umgebungsvariablen
+* /etc/hosts
+
+[source, bash]
+----
+docker run -d -t -p 5000:5000 --name myregistry registry:0.9.1
+curl http://localhost:5000
+
+docker run -d -t -P --name myregistrygui --link myregistry:myregistry -e REG1=http://myregistry:5000/v1/ atcol/docker-registry-ui
+----
+
+image::link.png[alt="link", float="right"]
+[source, bash]
+----
+docker exec -i -t myregistrygui bash
+root@5baad6521a33:/tomcat7# env | sort
+...
+root@5baad6521a33:/tomcat7# cat /etc/hosts
+...
+----
+
+== docker-compose
+
+image::docker-whales-transparent.png[docker-compose, 400, 400, float="right", link="https://docs.docker.com/compose/"]
+"...define a multi-container application in a single file..."
+
+* Entwicklungsumgebungen (z.B. Tools)
+* Produktion
+* oder auch für Präsentationen :)
+
+[source, bash]
+----
+cd docker-handson
+less docker-compose.yml
+docker-compose up -d
+...
+docker-compose stop
+...
+docker-compose start
+----
+
+== Veröffentlichung eines Images
+
+[source, bash]
+----
+issumy/gradlew uploadArchives
+
+docker run --rm -i -t -p 9090:8080 myregistry:5000/ollin/issumy
+curl http://localhost:9090/issues
+----
+
+image::push-image.png[alt="push image", float="right"]
+
+== Geschichte
+
+* internes Projekt bei dotCloud
+* September 2013 redhat Ankündigung ( https://blog.openshift.com/openshift-v3-platform-combines-docker-kubernetes-atomic-and-more/[OpenShift v3] )
+* Oktober 2013 dotCloud Inc. -> Docker Inc.
+* Juni 2014 dockercon
+    ** keynodes from IBM, google, rackspace
+* Juli 2014 Windows Azure + Docker
+* Mid 2015 Docker Container Support for Windows Server
+* aktuell Version 1.8.1
+    ** 2015-08-12 - 1.8 - Docker content trust, Docker toolbox, ...
+    ** 2015-06-22 - 1.7 - plugin system for engine, ... (Orchestration updates, Swarm, Machine, Compose)
+    ** 2015-04-16 - 1.6 - labels, windows client preview, logging drivers
+    ** 2015-02-03 - 1.5 - read only file system, IPv6 zwischen Containern
+    ** 2014-12-11 - 1.4 - stability
+    ** 2014-10-16 - 1.3 - exec, create, signing
+    **  . . .
+    ** 2014-06-09 - 1.0 - first stable version
+    **  . . .
+    ** 2013-03-20 - first public version
+* 14'000+ dockerisierte Applikationen (Stand Feb. 2015)
+* 3200 forks Feb. 2015 / 6,300 forks Sept. 2015
+
+== Docker - weitere Themen
+
+* https://docs.docker.com/swarm/[Docker Swarm] - Clustering, pool of containers into single, virtual host
+* https://www.docker.com/toolbox[Docker Toolbox] - Run it on Windows and Mac
+    ** Docker Machine
+    ** Docker Compose
+    ** ...
+* https://docs.docker.com/[Docker Documentation]
+* https://coreos.com/[CoreOs - Linux for Massive Server Deployments]
+* http://www.projectatomic.io/[Project Atomic - Deploy and Manage Your Docker Containers.]
+* https://github.com/GoogleCloudPlatform/kubernetes[Kubernetes - Container Cluster Managmement]
+* . . .
+
+== Diskussion
+
+* Docker - Java?
+* Ein Prozess und viele Anwendungen (JEE Modell) vs. viele Prozesse?
+
+*Vielen Dank für die Teilnahme!*
+
+Präsentation unter: https://github.com/ollin/pres-docker-dev-view
+
+email:      oliver.nautsch@nautsch.com +
+twitter:    https://twitter.com/ollispieps[@ollispieps]
+
+image::https://i.creativecommons.org/l/by/4.0/88x31.png["Creative Commons License", alt="Creative Commons License", link="http://creativecommons.org/licenses/by/4.0/"]
+
+== FAQ
+
+[qanda]
+Gibt es die Möglichkeit Applikationen mit graphischen Oberflächen mit Docker zu starten? Im Vortrag sind nur _headless_ Applikationen gezeigt worden.::
+    Ja, diese Möglichkeit gibt es tatsächlich. Hier ein Beispiel für Firefox und Netbeans: http://fabiorehm.com/blog/2014/09/11/running-gui-apps-with-docker/[Running GUI apps with Docker by Fábio Rehm].
+

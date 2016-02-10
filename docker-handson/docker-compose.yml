@@ -1,18 +1,16 @@
 myregistry:
-  image: registry:0.9.1
+  image: registry:2
   ports:
     - "5000:5000"
 
 myregistrygui:
-  image: atcol/docker-registry-ui
+  image: konradkleine/docker-registry-frontend:v2
   environment:
-    - REG1=http://myregistry:5000/v1/
+    - ENV_DOCKER_REGISTRY_HOST=myregistry
+    - ENV_DOCKER_REGISTRY_PORT=5000
+
   ports:
-    - "8111:8080"
+    - "8111:80"
   links:
     - myregistry
 
-mynexus:
-  image: jordan/nexus
-  ports:
-    - "8112:8081"

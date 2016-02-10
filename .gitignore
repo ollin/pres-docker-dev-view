@@ -8,4 +8,6 @@ docs/images
 .sass-cache
 atlassian-ide-plugin.xml
 *.swp
+build
+.bundle
 

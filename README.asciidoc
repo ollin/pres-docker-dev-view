@@ -5,4 +5,4 @@ image::https://badges.gitter.im/Join%20Chat.svg["Gitter", link="https://gitter.i
 
 Docker - Eine Einführung
 
-* https://github.com/ollin/pres-docker-dev-view/blob/master/src/asciidoc/presentation.adoc["Folien"]
+* https://github.com/ollin/pres-docker-dev-view/blob/master/src/docs/asciidoc/presentation.adoc["Folien"]
